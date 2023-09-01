@@ -1,8 +1,6 @@
-import "./Button.css"
+import "./Button.css";
 
-const RegButton = (props) =>{
-    return(
-        <button className="button">{props.title} </button>
-    )
-}
-export default RegButton
+const RegButton = (props) => {
+  return <button className="button">{props.title} </button>;
+};
+export default RegButton;

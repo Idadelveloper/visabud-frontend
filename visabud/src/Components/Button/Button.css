@@ -5,6 +5,7 @@ button{
     border-radius: 8px;
     border: none;
     width: 160px;
+    font-size: 16px;
 }
 
 .button{
