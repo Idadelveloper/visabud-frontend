@@ -1,0 +1,65 @@
+.chat {
+    display: flex;
+    justify-content: space-around;
+    padding: 2rem;
+}
+
+.chat-interface {
+    position: relative;
+    height: 800px;
+    width: 70%;
+    border-radius: 1rem;
+    display: inline;
+
+}
+
+.side-menu {
+    width: 30%;
+    /* position: sticky; */
+    /* position: fixed; */
+    
+    display: inline-block;
+}
+
+.questions {
+    border: 1px solid;
+    border-radius: 10px;
+    padding-left: 2rem;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+}
+
+.question {
+    border-bottom: 1px solid;
+    height: 3rem;
+    width: 20rem;
+    margin-top: 1rem;
+}
+
+.question:hover {
+    background-color: #E39FF6;
+    text-align: center;
+    border: none;
+    border-radius: 2rem;
+    cursor: default;
+    /* display: flex; */
+    align-items: center;
+}
+
+.faq-title {
+    font-size: 30px;
+    font-weight: 400;
+    text-align: center;
+}
+
+div > .cs-message__content-wrapper > .cs-message--outgoing .cs-message__content {
+    background-color: #E39FF6 !important;
+}
+
+div > .cs-message__content-wrapper > .cs-message__content-wrapper {
+    background-color: #FAE6FA !important;
+}
+
+.message-input {
+    
+}
