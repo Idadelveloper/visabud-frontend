@@ -4,12 +4,12 @@ import "./LandingPage.css";
 import 'bootstrap/dist/css/bootstrap.css';
 import Navbar from "../../Components/Navbar/Navbar";
 import ContextFormPage from "../Context/ContextFormPage";
+import Footer from "../../Components/Footer/Footer";
 
 const LandingPage = () => {
   return (
-    <div className="container">
+    <div className="w-100">
       <Navbar />
-      <ContextFormPage />
       <div className="row">
         <div className="col">
           <h1>
@@ -23,6 +23,7 @@ const LandingPage = () => {
           
         </div>
       </div>
+      <Footer/>
     </div>
   );
 };

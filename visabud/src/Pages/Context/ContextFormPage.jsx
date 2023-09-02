@@ -16,11 +16,20 @@ export default function ContextFormPage() {
     const { name, value } = event.target;
     setReason((prevFormData) => ({ ...prevFormData, [name]: value }));
   };
+
+  const handleSubmit = (event) => {
+    const originCountry = curCountryRef.current.value;
+    const curCountry = curCountryRef.current.value;
+    const destCountry = destCountryRef.current.value;
+
+    const extraContext = "My country of origin is" + originCountry + "and I am currently residing in" + curCountry + "and I want to travel to" + destCountry + "."
+    console.log(extraContext)
+  }
   
   return (
     <div>
       <div className='form-title'>Answer the following questions to help us with your search</div>
-        <form className='row g-3'>
+        <form className='row g-3' onSubmit={handleSubmit}>
             <div className='col-md-6'>
               <label htmlFor="" className='form-label'>What country are you travelling from?</label>
               <select ref={curCountryRef} className="form-select">

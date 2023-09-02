@@ -1,0 +1,53 @@
+.footer {
+    height: 150px;
+    background-color: #E39FF6;
+    width: 100%;
+    margin-top: auto;
+}
+
+.footer-info {
+    height: 80%;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.copyright {
+    height: 20%;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    font-size: small;
+}
+
+.footer-icons {
+    width: 50%;
+    display: inline;
+    margin-left: 5%;
+}
+
+.socials{
+    margin-top: 2rem;
+}
+
+.footer-btns {
+    display: inline;
+    width: 50%;
+    position: relative;
+    justify-items: right;
+    margin-left: 50%;
+
+}
+
+.footer-btns > button {
+    display: block;
+    text-align: right;
+}
+
+.req-btn {
+    border: 1px solid;
+    border-radius: 1rem;
+}
+
+

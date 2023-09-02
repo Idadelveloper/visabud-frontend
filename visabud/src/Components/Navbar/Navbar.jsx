@@ -17,7 +17,7 @@ const Navbar = () => {
     <div className="navbar row">
       <div className="row">
         <div className="logo col">
-          <img src={logo} alt="VisaBud logo" srcset="" />
+          <img src={logo} alt="VisaBud logo" srcSet="" />
         </div>
         <div className="features col">
           <button type="button" class="btn col req-btn">Travel Requirements</button>
