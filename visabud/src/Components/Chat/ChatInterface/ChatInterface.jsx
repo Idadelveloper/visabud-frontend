@@ -15,45 +15,100 @@ export default function ChatInterface() {
             sender: "ChatGPT"
         }
     ])
+    const [has_questions, setHasQuestions] = useState(true)
     const [history, setHistory] = useState([])
+    const [initial_context, setContext] = useState("You are a kind helpful assistant chatbot. Your job is to assist people applying for visa to travel abroad." + "My country of origin is Cameroon and I am currently residing in Cameroon and I want to travel to Canada.")
+    const [questions, setQuestions] = useState([])
+    const [answers, setAnswers] = useState([])
+    const [idx, setIdx] = useState(1)
 
-    const handleSend = async (message) => {
+
+    const handleSend = (message) => {
+        console.log(message)
+        if (!message) {
+            return
+        }
         const newMessage = {
             message: message,
             sender: "user",
             direction: "outgoing"
         }
-
         const newMessages = [...messages, newMessage]
-
         setMessages(newMessages)
-
         setTyping(true)
-
-        await processMessageToChatGPT(message, newMessage, history)
-
+        processMessageToChatGPT(newMessage)
+        if (idx <= questions.length) {
+            setAnswers([...answers, message])
+        }
+        console.log(questions, answers)
         setTyping(false)
     }
 
-    async function processMessageToChatGPT(message, newMessage, history){
-        await axios.post("http://127.0.0.1:5000/enquire", {"question": message, "history": history})
+
+    async function genQuestions(context) {
+        setTyping(true)
+        await axios.post("http://127.0.0.1:5000/questions", {"context": context})
         .then((response) => {
-            console.log(response)
-            const newResponseMessage = {
-                message: response.data.answer,
-                sender: "ChatGPT"
+            setQuestions(response.data.answer)
+            if (questions) {
+                setHasQuestions(true)
+                const newResponseMessage = {
+                    message: questions[0],
+                    sender: "ChatGPT"
+                }
+                setMessages([...messages, newResponseMessage])
             }
-            const newFinalMessages = [...messages, newMessage, newResponseMessage]
-            setMessages(newFinalMessages)
-            setHistory(response.data.history)
+            setTyping(false)
         })
         .catch(error => {
             console.log(error)
         });
-        
-        
     }
 
+    useEffect(() => {
+        genQuestions(initial_context)
+     }, []);
+
+     async function genSuggestions() {
+        setTyping(true)
+        await axios.post("http://127.0.0.1:5000/suggestions", {"questions": questions, "answers": answers})
+        .then((response) => {
+            const suggestion = response.data.answer
+            setHasQuestions(true)
+            const newResponseMessage = {
+                message: suggestion,
+                sender: "ChatGPT"
+            }
+            setMessages([...messages, newResponseMessage])
+            setTyping(false)
+        })
+        .catch(error => {
+            console.log(error)
+        });
+    }
+
+    function processMessageToChatGPT(newMessage){
+        let len = questions.length
+        if (idx >= len) {
+            console.log(answers)
+            setHasQuestions(false)
+            const newResponseMessage = {
+                message: "Cool, we have enough information :). Generating suggestions...",
+                sender: "ChatGPT"
+            }
+            setMessages([...messages, newResponseMessage])
+            genSuggestions()
+            return
+        }
+        let newResponseMessage = {}
+        newResponseMessage = {
+            message: questions[idx],
+            sender: "ChatGPT"
+        }
+        setIdx(idx+1)
+        const newFinalMessages = [...messages, newMessage, newResponseMessage]
+        setMessages(newFinalMessages)
+    }
     
   return (
     <div className='row w-100 chat'>
@@ -76,7 +131,7 @@ export default function ChatInterface() {
                 <ChatContainer>
                     <MessageList
                         scrollBehavior='smooth'
-                        typingIndicator={typing ? <TypingIndicator content="Visabud is typing"/> : null}
+                        typingIndicator={typing ? <TypingIndicator content="Visabud is typing..."/> : null}
                     >
                         {messages.map((message, i) => {
                             return <Message key={i} model={message} className={message.sender} />
