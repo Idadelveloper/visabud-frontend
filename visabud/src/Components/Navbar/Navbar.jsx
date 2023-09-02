@@ -1,5 +1,9 @@
 import React from "react";
-import { Container, Nav, Form, Button, NavDropdown } from "react-bootstrap";
+// import { Container, Nav, Form, Button, NavDropdown } from "react-bootstrap";
+import 'bootstrap/dist/css/bootstrap.css';
+import logo from '../../assets/VisaBud.png';
+import "./Navbar.css"
+
 import {
   BrowserRouter,
   Link,
@@ -10,25 +14,18 @@ import {
 
 const Navbar = () => {
   return (
-    <Navbar expand="lg" className="bg-body-tertiary">
-      <Container fluid>
-        <Navbar.Brand href="#"><img src="./Assets/Images/VisaBud.png"/></Navbar.Brand>
-        <Navbar.Toggle aria-controls="navbarScroll"/>
-        <Navbar.Collapse id="navbarScroll">
-          <Nav
-            className="me-auto my-2 my-lg-0"
-            style={{ maxHeight: "100px" }}
-            navbarScroll
-          ></Nav>
-          <Form className="d-flex">
-            <Nav.Link href="#" disabled>
-              Travel Requirements
-            </Nav.Link>
-            <Button title="Start chatting" />
-          </Form>
-        </Navbar.Collapse>
-      </Container>
-    </Navbar>
+    <div className="navbar row">
+      <div className="row w-75">
+        <div className="logo col">
+          <img src={logo} alt="VisaBud logo" srcset="" />
+        </div>
+        <div className="features col">
+          <button type="button" class="btn col req-btn">Travel Requirements</button>
+          <button type="button" class="btn col chat-btn">Start Chatting</button>
+        </div>
+      </div>
+      <div className="w-25"></div>
+    </div>
   );
 };
 

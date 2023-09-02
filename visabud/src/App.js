@@ -1,6 +1,6 @@
 import "./App.css";
 import Navbar from "./Components/Navbar/Navbar";
-import LandingPage from "./Pages/Landing Page/LandingPage";
+import LandingPage from "./Pages/LandingPage/LandingPage";
 
 function App() {
   return (

@@ -1,0 +1,38 @@
+.logo {
+    display: flex;
+    align-items: center;
+}
+
+.req-btn {
+    background-color: transparent;
+    border: none;
+}
+
+.req-btn:hover {
+    background-color: #E39FF6;
+}
+
+.chat-btn {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.chat-btn.req-btn:hover {
+    background-color: palevioletred
+}
+
+.navbar {
+    height: 100px;
+}
+
+.btn {
+    height: 3rem;
+    margin: 5px;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.features {
+    display: inline-block;
+    justify-content: space-between;
+}
