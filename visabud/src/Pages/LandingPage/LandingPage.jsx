@@ -3,11 +3,13 @@ import "./LandingPage.css";
 // import { Container, Row, Col } from "react-bootstrap";
 import 'bootstrap/dist/css/bootstrap.css';
 import Navbar from "../../Components/Navbar/Navbar";
+import ContextFormPage from "../Context/ContextFormPage";
 
 const LandingPage = () => {
   return (
     <div className="container">
       <Navbar />
+      <ContextFormPage />
       <div className="row">
         <div className="col">
           <h1>
