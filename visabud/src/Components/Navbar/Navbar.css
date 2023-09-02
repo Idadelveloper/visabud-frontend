@@ -1,6 +1,8 @@
 .logo {
     display: flex;
     align-items: center;
+    margin: auto;
+    justify-content: center;
 }
 
 .req-btn {
@@ -32,7 +34,9 @@
     padding-right: 15px;
 }
 
+
 .features {
     display: inline-block;
-    justify-content: space-between;
+    justify-content: center;
+    /* position: absolute; */
 }

@@ -15,7 +15,7 @@ import {
 const Navbar = () => {
   return (
     <div className="navbar row">
-      <div className="row w-75">
+      <div className="row">
         <div className="logo col">
           <img src={logo} alt="VisaBud logo" srcset="" />
         </div>
@@ -24,7 +24,7 @@ const Navbar = () => {
           <button type="button" class="btn col chat-btn">Start Chatting</button>
         </div>
       </div>
-      <div className="w-25"></div>
+     
     </div>
   );
 };
