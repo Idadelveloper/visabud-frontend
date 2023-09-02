@@ -1,0 +1,19 @@
+.form-title{
+    font-size: 30px;
+    font-weight: bold;
+    text-align: center;
+    padding: 4rem;
+}
+
+.form-button {
+    text-align: right;
+}
+
+.form-button >button {
+    background-color: var(--primary-color);
+    border: none;
+}
+
+.form-button >button:hover {
+    background-color: #E39FF6;
+}
