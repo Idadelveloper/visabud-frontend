@@ -2,14 +2,25 @@
   font-family: "Zilla Slab", serif;
   font-size: 70px;
 }
+html, body {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.top-pg {
+  width: 100%;
+  display: flex;
+  flex-direction: wrap;
+  justify-content: center;
+}
 
 .home-text, .globe {
-  width: 50%;
+  width: 40%;
   display: inline-block;
 }
 
 .home-text {
-  height: 500px;
   margin: auto 4rem;
 }
 
@@ -19,10 +30,6 @@
 }
 
 .globe > img {
-  position: absolute;
-  top: 5%;
-  left: 60%;
-  overflow: hidden;
 }
 
 .home-btn-req{
@@ -36,27 +43,29 @@
 }
 
 .stats {
-  width: 70%;
-  height: 4rem;
-  background-color: #E39FF6;
+  width: 85%;
+  padding: 20px;
+  background-color: #e8adf8;
   border-radius: 5px;
   text-align: center;
   margin: 2rem auto;
   display: flex;
   justify-content: space-around;
+  align-items: center;
 }
 
-.stats {
-  align-items: center;
+.stat {
+  max-width: 300px;
 }
 
 .top {
   font-size: 20px;
   font-weight: 500;
+  padding: 0;
+  margin: 0;
 }
 
 .bottom {
-  font-size: x-small;
   margin-bottom: 0;
 }
 
