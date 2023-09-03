@@ -21,8 +21,7 @@ export default function ChatInterface(props) {
     ])
     const [has_questions, setHasQuestions] = useState(true)
     const [history, setHistory] = useState([])
-    const [initial_context, setContext] = useState("You are a kind helpful assistant chatbot. Your job is to assist people applying for visa to travel abroad. " + props.context)
-    console.log("context " + props.context)
+    const [initial_context, setContext] = useState("You are a kind helpful assistant chatbot. Your job is to assist people applying for visa to travel abroad. I am from Cameroon and my country of destination is Canada")
     const [questions, setQuestions] = useState([])
     const [answers, setAnswers] = useState([])
     const [idx, setIdx] = useState(0)
@@ -45,8 +44,6 @@ export default function ChatInterface(props) {
         if (idx <= questions.length) {
             setAnswers([...answers, message])
         }
-        console.log(questions, answers)
-        setTyping(false)
     }
 
 
@@ -70,20 +67,22 @@ export default function ChatInterface(props) {
         });
     }
 
-    async function genCoverLetter() {
+    async function genCoverLetter(msg1, msg2) {
         setTyping(true)
-        await axios.post("http://127.0.0.1:5000/cover", {"questions": questions, "answers": answers})
+        await axios.post("http://127.0.0.1:5000/cover", {"questions": questions, "answers": answers.slice(1)})
         .then((response) => {
             const cover = response.data.answer
             const newResponseMessage = {
                 message: cover,
                 sender: "ChatGPT"
             }
-            setMessages([...messages, newResponseMessage])
+            setMessages([...messages, msg1, msg2, newResponseMessage])
+            setTyping(false)
         })
         .catch(error => {
             console.log(error)
         });
+        
     }
 
     useEffect(() => {
@@ -92,7 +91,7 @@ export default function ChatInterface(props) {
 
      async function genSuggestions() {
         setTyping(true)
-        await axios.post("http://127.0.0.1:5000/suggestions", {"questions": questions, "answers": answers})
+        await axios.post("http://127.0.0.1:5000/suggestions", {"questions": questions, "answers": answers.slice(1)})
         .then((response) => {
             const suggestion = response.data.answer
             const newResponseMessage = {
@@ -104,8 +103,8 @@ export default function ChatInterface(props) {
                 sender: "ChatGPT"
             }
             setMessages([...messages, newResponseMessage, coverInfo])
-
-            genCoverLetter()
+            setTyping(true)
+            genCoverLetter(newResponseMessage, coverInfo)
         })
         .catch(error => {
             console.log(error)
@@ -138,8 +137,8 @@ export default function ChatInterface(props) {
 
     
   return (
-    <div className='row w-100 chat'>
-        <div className='side-menu'>
+    <div className='chat'>
+        {/* <div className='side-menu'>
             <div>
                 <div className="faq-title">Suggested FAQs</div>
                 <div className="questions">
@@ -152,8 +151,8 @@ export default function ChatInterface(props) {
                     <div className='question'>Visa on arrival countries</div>
                 </div>
             </div>
-        </div>
-        <div className='chat-interface col'>
+        </div> */}
+        <div className='chat-interface'>
             <MainContainer>
                 <ChatContainer>
                     <MessageList
