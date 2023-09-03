@@ -25,7 +25,10 @@ export default function ChatInterface(props) {
     console.log("context " + location.state.context)
     const [questions, setQuestions] = useState([])
     const [answers, setAnswers] = useState([])
+
     const [idx, setIdx] = useState(0)
+    const url = process.env.REACT_APP_BASE_URL
+
 
 
     const handleSend = (message) => {
@@ -49,7 +52,7 @@ export default function ChatInterface(props) {
 
     async function genQuestions(context) {
         setTyping(true)
-        await axios.post("http://127.0.0.1:5000/questions", {"context": context})
+        await axios.post(url + "/questions", {"context": context})
         .then((response) => {
             setQuestions(response.data.answer)
             if (questions) {
@@ -91,7 +94,8 @@ export default function ChatInterface(props) {
 
      async function genSuggestions() {
         setTyping(true)
-        await axios.post("http://127.0.0.1:5000/suggestions", {"questions": questions, "answers": answers.slice(1)})
+
+        await axios.post(url + "/suggestions", {"questions": questions, "answers": answers.slice(1)})
         .then((response) => {
             const suggestion = response.data.answer
             const newResponseMessage = {
