@@ -1,34 +1,34 @@
 import React from 'react'
 import { useState, useEffect } from 'react'
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import './ChatInterface.css'
 import "@chatscope/chat-ui-kit-styles/dist/default/styles.min.css";
 import {MainContainer, ChatContainer, MessageList, Message, MessageInput, TypingIndicator} from "@chatscope/chat-ui-kit-react";
 import axios from 'axios';
 import 'bootstrap/dist/css/bootstrap.css';
-import { useLocation } from "react-router-dom";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faSignIn, faRefresh } from '@fortawesome/free-solid-svg-icons';
 
 
 export default function ChatInterface(props) {
-    //const location = useLocation()
-    //const { data } = useLocation()
     const [typing, setTyping] = useState(false)
     const [messages, setMessages] = useState([
         {
-            message: "Hello, I am VisaBud",
+            message: "Hello, I am VisaBud. A friendly agent aimed at guiding you make any visa inquiries",
             sender: "ChatGPT"
         }
     ])
+    const location = useLocation();
     const [has_questions, setHasQuestions] = useState(true)
     const [history, setHistory] = useState([])
-    const [initial_context, setContext] = useState("You are a kind helpful assistant chatbot. Your job is to assist people applying for visa to travel abroad. I am from Cameroon and my country of destination is Canada")
+    const [initial_context, setContext] = useState("You are a kind helpful assistant chatbot. Your job is to assist people applying for visa to travel abroad. Use this personal background informaion to help me:" + location.state.context)
+    console.log("context " + location.state.context)
     const [questions, setQuestions] = useState([])
     const [answers, setAnswers] = useState([])
     const [idx, setIdx] = useState(0)
 
 
     const handleSend = (message) => {
-        console.log(message)
         if (!message) {
             return
         }
@@ -120,7 +120,6 @@ export default function ChatInterface(props) {
                 message: "Cool, we have enough information :). Generating suggestions...",
                 sender: "ChatGPT"
             }
-            setTyping(true)
             setMessages([...messages, newResponseMessage])
             genSuggestions()
             return
@@ -150,6 +149,7 @@ export default function ChatInterface(props) {
                     <div className='question'>African visa free countries</div>
                     <div className='question'>Visa on arrival countries</div>
                 </div>
+                
             </div>
         </div> */}
         <div className='chat-interface'>

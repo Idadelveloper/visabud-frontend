@@ -17,6 +17,8 @@ export default function ContextFormPage() {
   const financeRef = useRef(null);
   const history = useNavigate();
 
+  const navigate = useNavigate();
+
   const handleInputChange = (event) => {
     const { name, value } = event.target;
     setReason((prevFormData) => ({ ...prevFormData, [name]: value }));
@@ -38,9 +40,14 @@ const handleSubmit = (event) => {
   const data = {
     ...reason 
   };
-  history('/chat',
-      {state: data 
-  })
+    const originCountry = curCountryRef.current.value;
+    const curCountry = curCountryRef.current.value;
+    const destCountry = destCountryRef.current.value;
+    const visaType = visaTypeRef.current.value
+    // const suggest = visaTypeRef.current.value == "suggest" ? true : false
+    const extraContext = "My country of origin is " + curCountryRef.current.value + " and I am currently residing in " + curCountryRef.current.value + " and I want to travel to " + destCountryRef.current.value + " . I want to apply for a " + visaTypeRef.current.value + " visa. " + data; 
+    console.log(extraContext)
+    navigate("/chat", {state: {"context": extraContext}, replace: true})
 }
 
   // const handleSubmit = (event) => {
