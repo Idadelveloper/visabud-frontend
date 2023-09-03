@@ -1,5 +1,6 @@
 import React from 'react'
 import { useState, useEffect } from 'react'
+import { useNavigate } from "react-router-dom";
 import './ChatInterface.css'
 import "@chatscope/chat-ui-kit-styles/dist/default/styles.min.css";
 import {MainContainer, ChatContainer, MessageList, Message, MessageInput, TypingIndicator} from "@chatscope/chat-ui-kit-react";
@@ -7,7 +8,7 @@ import axios from 'axios';
 import 'bootstrap/dist/css/bootstrap.css';
 
 
-export default function ChatInterface() {
+export default function ChatInterface(props) {
     const [typing, setTyping] = useState(false)
     const [messages, setMessages] = useState([
         {
@@ -17,7 +18,8 @@ export default function ChatInterface() {
     ])
     const [has_questions, setHasQuestions] = useState(true)
     const [history, setHistory] = useState([])
-    const [initial_context, setContext] = useState("You are a kind helpful assistant chatbot. Your job is to assist people applying for visa to travel abroad." + "My country of origin is Cameroon and I am currently residing in Cameroon and I want to travel to Canada.")
+    const [initial_context, setContext] = useState("You are a kind helpful assistant chatbot. Your job is to assist people applying for visa to travel abroad. " + props.context)
+    console.log("context " + props.context)
     const [questions, setQuestions] = useState([])
     const [answers, setAnswers] = useState([])
     const [idx, setIdx] = useState(1)
@@ -109,6 +111,7 @@ export default function ChatInterface() {
         const newFinalMessages = [...messages, newMessage, newResponseMessage]
         setMessages(newFinalMessages)
     }
+
     
   return (
     <div className='row w-100 chat'>

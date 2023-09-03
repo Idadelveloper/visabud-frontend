@@ -2,11 +2,11 @@ import React from 'react'
 import ChatInterface from '../../Components/Chat/ChatInterface/ChatInterface'
 import Navbar from '../../Components/Navbar/Navbar'
 
-export default function ChatPage() {
+export default function ChatPage(props) {
   return (
     <div>
         <Navbar />
-        <ChatInterface />
+        <ChatInterface context={props.context} />
     </div>
   )
 }

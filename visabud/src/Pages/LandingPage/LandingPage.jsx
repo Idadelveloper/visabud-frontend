@@ -1,5 +1,5 @@
 import React, {useRef} from "react";
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import "./LandingPage.css";
 // import { Container, Row, Col } from "react-bootstrap";
 import 'bootstrap/dist/css/bootstrap.css';
@@ -18,13 +18,17 @@ const LandingPage = () => {
   const resCountryRef = useRef(null);
   const destCountryRef = useRef(null);
 
+  const navigate = useNavigate();
+
   const handleSubmit = (event) => {
+    event.preventDefault();
     const infoType = infoTypeRef.current.value;
     const residenceCountry = resCountryRef.current.value;
     const destinationCountry = destCountryRef.current.value;
 
     const extraContext = "I am currently residing in " + residenceCountry + " and I want to travel to " + destinationCountry + ". What are the " + infoType + " for my trip?"
     console.log(extraContext)
+    navigate("/chat", {state: {"context": extraContext}, replace: true})
   }
   return (
     <div className="w-100">
