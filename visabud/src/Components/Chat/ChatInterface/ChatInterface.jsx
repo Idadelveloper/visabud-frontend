@@ -1,31 +1,31 @@
 import React from 'react'
 import { useState, useEffect } from 'react'
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import './ChatInterface.css'
 import "@chatscope/chat-ui-kit-styles/dist/default/styles.min.css";
 import {MainContainer, ChatContainer, MessageList, Message, MessageInput, TypingIndicator} from "@chatscope/chat-ui-kit-react";
 import axios from 'axios';
 import 'bootstrap/dist/css/bootstrap.css';
-import { useLocation } from "react-router-dom";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faSignIn, faRefresh } from '@fortawesome/free-solid-svg-icons';
 
 
 export default function ChatInterface(props) {
-    //const location = useLocation()
-    //const { data } = useLocation()
     const [typing, setTyping] = useState(false)
     const [messages, setMessages] = useState([
         {
-            message: "Hello, I am VisaBud",
+            message: "Hello, I am VisaBud. A friendly agent aimed at guiding you make any visa inquiries",
             sender: "ChatGPT"
         }
     ])
+    const location = useLocation();
     const [has_questions, setHasQuestions] = useState(true)
     const [history, setHistory] = useState([])
-    const [initial_context, setContext] = useState("You are a kind helpful assistant chatbot. Your job is to assist people applying for visa to travel abroad. " + props.context)
-    console.log("context " + props.context)
+    const [initial_context, setContext] = useState("You are a kind helpful assistant chatbot. Your job is to assist people applying for visa to travel abroad. " + location.state.context)
+    console.log("context " + location.state.context)
     const [questions, setQuestions] = useState([])
     const [answers, setAnswers] = useState([])
-    const [idx, setIdx] = useState(0)
+    const [idx, setIdx] = useState(1)
 
 
     const handleSend = (message) => {
@@ -58,28 +58,12 @@ export default function ChatInterface(props) {
             if (questions) {
                 setHasQuestions(true)
                 const newResponseMessage = {
-                    message: response.data.first,
+                    message: questions[0],
                     sender: "ChatGPT"
                 }
                 setMessages([...messages, newResponseMessage])
             }
             setTyping(false)
-        })
-        .catch(error => {
-            console.log(error)
-        });
-    }
-
-    async function genCoverLetter() {
-        setTyping(true)
-        await axios.post("http://127.0.0.1:5000/cover", {"questions": questions, "answers": answers})
-        .then((response) => {
-            const cover = response.data.answer
-            const newResponseMessage = {
-                message: cover,
-                sender: "ChatGPT"
-            }
-            setMessages([...messages, newResponseMessage])
         })
         .catch(error => {
             console.log(error)
@@ -95,17 +79,13 @@ export default function ChatInterface(props) {
         await axios.post("http://127.0.0.1:5000/suggestions", {"questions": questions, "answers": answers})
         .then((response) => {
             const suggestion = response.data.answer
+            setHasQuestions(true)
             const newResponseMessage = {
                 message: suggestion,
                 sender: "ChatGPT"
             }
-            const coverInfo = {
-                message: "Now, I'll generate a custom visa cover letter for you. ",
-                sender: "ChatGPT"
-            }
-            setMessages([...messages, newResponseMessage, coverInfo])
-
-            genCoverLetter()
+            setMessages([...messages, newResponseMessage])
+            setTyping(false)
         })
         .catch(error => {
             console.log(error)
@@ -121,7 +101,6 @@ export default function ChatInterface(props) {
                 message: "Cool, we have enough information :). Generating suggestions...",
                 sender: "ChatGPT"
             }
-            setTyping(true)
             setMessages([...messages, newResponseMessage])
             genSuggestions()
             return
@@ -151,6 +130,7 @@ export default function ChatInterface(props) {
                     <div className='question'>African visa free countries</div>
                     <div className='question'>Visa on arrival countries</div>
                 </div>
+                
             </div>
         </div>
         <div className='chat-interface col'>
