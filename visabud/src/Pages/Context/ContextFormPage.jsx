@@ -105,7 +105,7 @@ const handleSubmit = (event) => {
             </div> */}
             <div className="col-12 form-button my-3">
               
-              <button type="submit" className="btn btn-primary" onClick={handleSubmit}>Go</button>
+              <button type="submit" className="btn btn-primary" onClick={handleSubmit}>Let's Go</button>
             </div>
             {/* <Link onChange={handleInputChange} to="/chat" state={reason}> Go
             </Link> */}

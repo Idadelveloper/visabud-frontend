@@ -15,16 +15,18 @@ import {
 const Navbar = () => {
   return (
     <div className="navbar row">
-      <div className="row">
-        <div className="logo col">
-          <img src={logo} alt="VisaBud logo" srcSet="" />
-        </div>
-        <div className="features col">
-          <button type="button" className="btn col req-btn">About Us</button>
-          <button type="button" className="btn col chat-btn">Start Chatting</button>
+      <div className="nav-content">
+        <Link to="/">
+          <div className="logo col">
+            <img src={logo} alt="VisaBud logo" srcSet="" />
+          </div>
+        </Link>
+        <div className="features">
+          <button type="button" className="btn req-btn">About Us</button>
+          <Link to="/start"><button type="button" className="btn chat-btn">Start Chatting</button></Link>
         </div>
       </div>
-     
+
     </div>
   );
 };

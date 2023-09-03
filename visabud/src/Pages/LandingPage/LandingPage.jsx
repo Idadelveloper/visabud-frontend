@@ -33,18 +33,16 @@ const LandingPage = () => {
   return (
     <div className="w-100">
       <Navbar />
-      <div className="px-10 w-100">
+      <div className="top-pg">
         <div className="home-text">
           <div className="heading">
             Let us take you from <br /> Here to the There.
           </div>
           <div className="secondary-text">
-            Allow us to assist you with touring around the world with ease and
-            comfort, providing you with all the details you need in getting into
-            any country of your choice!
+            Getting a visa for some countries is hard. What are the visa requirements? What documents do you submit? How does one avoid visa rejections? We're here to help! 
           </div>
           <div className="home-btns">
-            <Link to="/get-context" className="btn home-btn-req">Get Visa Info</Link>
+            {/* <Link to="/start" className="btn home-btn-req">Get Visa Info</Link> */}
             <Link to="/start" className="btn home-btn-chat">Get Started</Link>
           </div>
           
@@ -55,23 +53,23 @@ const LandingPage = () => {
       </div>
       <div className="stats">
         <div className="stat">
-          <p className="top">200</p>
-          <p className="bottom">Countries</p>
+          <p className="top">Easy to use</p>
+          <p className="bottom">No need scouring the web for info. Our chatbot gets the right info for you</p>
         </div>
         <div className="stat">
-          <p className="top">9k+</p>
-          <p className="bottom">Visa Information</p>
+          <p className="top">Suggestions</p>
+          <p className="bottom">Identifies weakpoints in your application and suggests supporting documents</p>
         </div>
         <div className="stat">
-          <p className="top">500</p>
-          <p className="bottom">Users</p>
+          <p className="top">Personalized</p>
+          <p className="bottom">The information you get is tailored to you. Can also get a custom visa cover letter</p>
         </div>
       </div>
 
       <div className="relative">
         <div className="mid-sec">
-          <h2>Allow us help you get the travel information you need</h2>
-          <p>Get access to the travel requirements of all the countries you dream of travelling to.</p>
+          <h2>We are here to help</h2>
+          <p>Get visa and immigration information</p>
         </div>
 
         <img src={travel} alt="Car Icon" srcSet="" className="home-icon car" />
@@ -88,7 +86,7 @@ const LandingPage = () => {
                 </select>
               </div>
               <div className='col-md-4'>
-                <label htmlFor="" className='form-label'>Residence Country</label>
+                <label htmlFor="" className='form-label'>Country of Residence</label>
                 <select ref={resCountryRef} className="form-select">
                   <option selected>Select...</option>
                   <option value="Cameroon">Cameroon</option>
@@ -97,7 +95,7 @@ const LandingPage = () => {
                 </select>
               </div>
               <div className='col-md-4'>
-                <label htmlFor="" className='form-label'>Destination</label>
+                <label htmlFor="" className='form-label'>Country of Destination</label>
                 <select ref={destCountryRef} className="form-select">
                   <option selected>Select...</option>
                   <option value="United States">United States</option>
@@ -116,18 +114,20 @@ const LandingPage = () => {
           <img src={airportLady} alt="Airport Lady" srcSet="" className="airport-lady" />
         </div>
         <div className="bottom-text">
-          <h2>Get one-on-one help and ace those visa interviews!</h2>
+          <h2>No more visa rejections</h2>
           <p>Receive detailed guidance and travel tips using our chatbot.</p>
           
+          <Link to="/start">
           <div className="col-12 form-button my-2 btn-bottom">
-            <button className="btn btn-home">Start Chatting</button>
+          <button className="btn btn-home">Start Chatting</button>
           </div>
+          </Link>
         </div>
         <img src={stamp} alt="Stamp Icon" srcSet="" className="home-icon stamp" />
       </div>
       
       
-      <Footer/>
+      {/* <Footer/> */}
     </div>
   );
 };

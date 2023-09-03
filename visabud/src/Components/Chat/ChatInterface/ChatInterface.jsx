@@ -70,6 +70,22 @@ export default function ChatInterface(props) {
         });
     }
 
+    async function genCoverLetter() {
+        setTyping(true)
+        await axios.post("http://127.0.0.1:5000/cover", {"questions": questions, "answers": answers})
+        .then((response) => {
+            const cover = response.data.answer
+            const newResponseMessage = {
+                message: cover,
+                sender: "ChatGPT"
+            }
+            setMessages([...messages, newResponseMessage])
+        })
+        .catch(error => {
+            console.log(error)
+        });
+    }
+
     useEffect(() => {
         genQuestions(initial_context)
      }, []);
@@ -79,13 +95,17 @@ export default function ChatInterface(props) {
         await axios.post("http://127.0.0.1:5000/suggestions", {"questions": questions, "answers": answers})
         .then((response) => {
             const suggestion = response.data.answer
-            setHasQuestions(true)
             const newResponseMessage = {
                 message: suggestion,
                 sender: "ChatGPT"
             }
-            setMessages([...messages, newResponseMessage])
-            setTyping(false)
+            const coverInfo = {
+                message: "Now, I'll generate a custom visa cover letter for you. ",
+                sender: "ChatGPT"
+            }
+            setMessages([...messages, newResponseMessage, coverInfo])
+
+            genCoverLetter()
         })
         .catch(error => {
             console.log(error)
