@@ -50,4 +50,18 @@
     border-radius: 1rem;
 }
 
+.socials > a {
+    color: var(--primary-color);
+    font-size: 20px;
+}
+
+.footer-btns > .req-btn {
+    border-radius: 5px;
+}
+
+.footer-btns > .req-btn, .footer-btns > .chat-btn {
+    font-size: 15px;
+    height: 2.5rem;
+}
+
 

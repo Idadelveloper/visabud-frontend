@@ -28,7 +28,7 @@ export default function Footer() {
           </div>
         </div>
         <div className="footer-btns">
-          <button type="button" className="btn req-btn">Travel Requirements</button>
+          <button type="button" className="btn req-btn">Get Visa Info</button>
           <button type="button" className="btn chat-btn">Start Chatting</button>
         </div>
       </div>
