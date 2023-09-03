@@ -1,4 +1,5 @@
 import React, {useRef} from "react";
+import { Link } from 'react-router-dom';
 import "./LandingPage.css";
 // import { Container, Row, Col } from "react-bootstrap";
 import 'bootstrap/dist/css/bootstrap.css';
@@ -39,8 +40,8 @@ const LandingPage = () => {
             any country of your choice!
           </div>
           <div className="home-btns">
-            <button type="button" className="btn home-btn-req ">Travel Requirements</button>
-            <button type="button" className="btn home-btn-chat ">Start Chatting</button>
+            <Link to="/get-context" className="btn home-btn-req">Get Visa Info</Link>
+            <Link to="/chat" className="btn home-btn-chat">Start Chatting</Link>
           </div>
           
         </div>

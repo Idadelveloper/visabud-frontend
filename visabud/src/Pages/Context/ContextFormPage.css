@@ -17,3 +17,7 @@
 .form-button >button:hover {
     background-color: #E39FF6;
 }
+
+.context-form {
+    margin: 0 6rem !important;
+}

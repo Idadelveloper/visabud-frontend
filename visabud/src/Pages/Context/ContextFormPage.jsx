@@ -1,5 +1,7 @@
 import React, {useState, useRef} from 'react'
 import "./ContextFormPage.css"
+import Navbar from '../../Components/Navbar/Navbar';
+import Footer from '../../Components/Footer/Footer';
 
 export default function ContextFormPage() {
   const [reason, setReason] = useState({"reason": ""})
@@ -28,8 +30,9 @@ export default function ContextFormPage() {
   
   return (
     <div>
+      <Navbar />
       <div className='form-title'>Answer the following questions to help us with your search</div>
-        <form className='row g-3' onSubmit={handleSubmit}>
+        <form className='row g-3 context-form' onSubmit={handleSubmit}>
             <div className='col-md-6'>
               <label htmlFor="" className='form-label'>What country are you travelling from?</label>
               <select ref={curCountryRef} className="form-select">
@@ -115,11 +118,11 @@ export default function ContextFormPage() {
               <label htmlFor="reason" className='form-label'>What is your reason for travelling? (not more than 300 words)</label>
               <textarea id="reason" name="reason" className='form-control' value={reason.reason} onChange={handleChange}/>
             </div>
-            <div className="col-12 form-button">
+            <div className="col-12 form-button my-3">
               <button type="submit" className="btn btn-primary">Suggest Visa Type</button>
-              
             </div>
         </form>
+        <Footer />
     </div>
   )
 }
