@@ -1,13 +1,14 @@
 .chat {
     display: flex;
-    justify-content: space-around;
+    justify-content: center;
     padding: 2rem;
+    width: 100%;
 }
 
 .chat-interface {
     position: relative;
+    width: 85%;
     height: 800px;
-    width: 70%;
     border-radius: 1rem;
     display: inline;
 

@@ -21,16 +21,17 @@ export default function ChatInterface(props) {
     const location = useLocation();
     const [has_questions, setHasQuestions] = useState(true)
     const [history, setHistory] = useState([])
-    const [initial_context, setContext] = useState("You are a kind helpful assistant chatbot. Your job is to assist people applying for visa to travel abroad. " + location.state.context)
+    const [initial_context, setContext] = useState("You are a kind helpful assistant chatbot. Your job is to assist people applying for visa to travel abroad. Use this personal background informaion to help me:" + location.state.context)
     console.log("context " + location.state.context)
     const [questions, setQuestions] = useState([])
     const [answers, setAnswers] = useState([])
-    const [idx, setIdx] = useState(1)
+
+    const [idx, setIdx] = useState(0)
     const url = process.env.REACT_APP_BASE_URL
 
 
+
     const handleSend = (message) => {
-        console.log(message)
         if (!message) {
             return
         }
@@ -46,8 +47,6 @@ export default function ChatInterface(props) {
         if (idx <= questions.length) {
             setAnswers([...answers, message])
         }
-        console.log(questions, answers)
-        setTyping(false)
     }
 
 
@@ -59,7 +58,7 @@ export default function ChatInterface(props) {
             if (questions) {
                 setHasQuestions(true)
                 const newResponseMessage = {
-                    message: questions[0],
+                    message: response.data.first,
                     sender: "ChatGPT"
                 }
                 setMessages([...messages, newResponseMessage])
@@ -71,22 +70,45 @@ export default function ChatInterface(props) {
         });
     }
 
+    async function genCoverLetter(msg1, msg2) {
+        setTyping(true)
+        await axios.post("http://127.0.0.1:5000/cover", {"questions": questions, "answers": answers.slice(1)})
+        .then((response) => {
+            const cover = response.data.answer
+            const newResponseMessage = {
+                message: cover,
+                sender: "ChatGPT"
+            }
+            setMessages([...messages, msg1, msg2, newResponseMessage])
+            setTyping(false)
+        })
+        .catch(error => {
+            console.log(error)
+        });
+        
+    }
+
     useEffect(() => {
         genQuestions(initial_context)
      }, []);
 
      async function genSuggestions() {
         setTyping(true)
-        await axios.post(url + "/suggestions", {"questions": questions, "answers": answers})
+
+        await axios.post(url + "/suggestions", {"questions": questions, "answers": answers.slice(1)})
         .then((response) => {
             const suggestion = response.data.answer
-            setHasQuestions(true)
             const newResponseMessage = {
                 message: suggestion,
                 sender: "ChatGPT"
             }
-            setMessages([...messages, newResponseMessage])
-            setTyping(false)
+            const coverInfo = {
+                message: "Now, I'll generate a custom visa cover letter for you. ",
+                sender: "ChatGPT"
+            }
+            setMessages([...messages, newResponseMessage, coverInfo])
+            setTyping(true)
+            genCoverLetter(newResponseMessage, coverInfo)
         })
         .catch(error => {
             console.log(error)
@@ -118,8 +140,8 @@ export default function ChatInterface(props) {
 
     
   return (
-    <div className='row w-100 chat'>
-        <div className='side-menu'>
+    <div className='chat'>
+        {/* <div className='side-menu'>
             <div>
                 <div className="faq-title">Suggested FAQs</div>
                 <div className="questions">
@@ -133,8 +155,8 @@ export default function ChatInterface(props) {
                 </div>
                 
             </div>
-        </div>
-        <div className='chat-interface col'>
+        </div> */}
+        <div className='chat-interface'>
             <MainContainer>
                 <ChatContainer>
                     <MessageList
