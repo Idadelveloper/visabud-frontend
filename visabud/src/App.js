@@ -12,7 +12,7 @@ function App() {
       <Routes>
           <Route path="/" element={<LandingPage />} />
           <Route path="/chat" element={<ChatPage />} />
-          <Route path="/get-context" element={<ContextFormPage />} />
+          <Route path="/start" element={<ContextFormPage />} />
        </Routes>
     </div>
   );

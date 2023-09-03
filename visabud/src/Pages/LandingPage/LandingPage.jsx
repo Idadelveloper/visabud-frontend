@@ -41,7 +41,7 @@ const LandingPage = () => {
           </div>
           <div className="home-btns">
             <Link to="/get-context" className="btn home-btn-req">Get Visa Info</Link>
-            <Link to="/chat" className="btn home-btn-chat">Start Chatting</Link>
+            <Link to="/start" className="btn home-btn-chat">Get Started</Link>
           </div>
           
         </div>

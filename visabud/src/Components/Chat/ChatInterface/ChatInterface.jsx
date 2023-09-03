@@ -5,9 +5,13 @@ import "@chatscope/chat-ui-kit-styles/dist/default/styles.min.css";
 import {MainContainer, ChatContainer, MessageList, Message, MessageInput, TypingIndicator} from "@chatscope/chat-ui-kit-react";
 import axios from 'axios';
 import 'bootstrap/dist/css/bootstrap.css';
+import { useLocation } from "react-router-dom";
 
 
-export default function ChatInterface() {
+export default function ChatInterface(props) {
+    //const location = useLocation()
+    const { data } = useLocation()
+    console.log(data)
     const [typing, setTyping] = useState(false)
     const [messages, setMessages] = useState([
         {
@@ -20,7 +24,7 @@ export default function ChatInterface() {
     const [initial_context, setContext] = useState("You are a kind helpful assistant chatbot. Your job is to assist people applying for visa to travel abroad." + "My country of origin is Cameroon and I am currently residing in Cameroon and I want to travel to Canada.")
     const [questions, setQuestions] = useState([])
     const [answers, setAnswers] = useState([])
-    const [idx, setIdx] = useState(1)
+    const [idx, setIdx] = useState(0)
 
 
     const handleSend = (message) => {
@@ -53,7 +57,7 @@ export default function ChatInterface() {
             if (questions) {
                 setHasQuestions(true)
                 const newResponseMessage = {
-                    message: questions[0],
+                    message: response.data.first,
                     sender: "ChatGPT"
                 }
                 setMessages([...messages, newResponseMessage])
@@ -96,6 +100,7 @@ export default function ChatInterface() {
                 message: "Cool, we have enough information :). Generating suggestions...",
                 sender: "ChatGPT"
             }
+            setTyping(true)
             setMessages([...messages, newResponseMessage])
             genSuggestions()
             return
