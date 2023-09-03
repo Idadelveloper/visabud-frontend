@@ -11,7 +11,7 @@ html, body {
 .top-pg {
   width: 100%;
   display: flex;
-  flex-direction: wrap;
+  flex-wrap: wrap;
   justify-content: center;
 }
 
@@ -52,6 +52,7 @@ html, body {
   display: flex;
   justify-content: space-around;
   align-items: center;
+  flex-wrap: wrap;
 }
 
 .stat {
@@ -130,4 +131,19 @@ h2 {
 .stamp {
   bottom: -80%;
   right: 8%;
+}
+
+@media screen and (max-width: 800px) {
+  body {
+    background-color: lightblue;
+  }
+  .home-text, .globe {
+    width: 80%;
+    display: inline-block;
+  }
+
+  .heading {
+    font-family: "Zilla Slab", serif;
+    font-size: 40px;
+  }
 }
