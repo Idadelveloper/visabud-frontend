@@ -1,4 +1,124 @@
-h1 {
+.heading {
   font-family: "Zilla Slab", serif;
-  font-size: 64px;
+  font-size: 70px;
+}
+
+.home-text, .globe {
+  width: 50%;
+  display: inline-block;
+}
+
+.home-text {
+  height: 500px;
+  margin: auto 4rem;
+}
+
+.secondary-text {
+  width: 70%;
+  margin: 2rem 0;
+}
+
+.globe > img {
+  position: absolute;
+  top: 5%;
+  left: 60%;
+  overflow: hidden;
+}
+
+.home-btn-req{
+  border: 1px solid !important;
+
+}
+
+.home-btn-chat {
+  background-color: var(--primary-color) !important;
+  color: white !important;
+}
+
+.stats {
+  width: 70%;
+  height: 4rem;
+  background-color: #E39FF6;
+  border-radius: 5px;
+  text-align: center;
+  margin: 2rem auto;
+  display: flex;
+  justify-content: space-around;
+}
+
+.stats {
+  align-items: center;
+}
+
+.top {
+  font-size: 20px;
+  font-weight: 500;
+}
+
+.bottom {
+  font-size: x-small;
+  margin-bottom: 0;
+}
+
+h2 {
+  font-size: 40px;
+  font-weight: 600;
+}
+
+.mid-sec {
+  margin-top: 4rem;
+  margin-bottom: 2rem;
+}
+
+
+.mid-sec>p, .mid-sec>h2 {
+  width: 40%;
+  text-align: center;
+  margin: auto;
+}
+
+.home-form {
+  margin: auto 10rem !important;
+}
+
+.btn-home {
+  color: white !important;
+  width: 10rem;
+}
+
+.home-icon {
+  position: absolute;
+}
+
+.car {
+  top: 95%;
+  left: 5%;
+}
+
+.airplane {
+  right: 5%;
+  bottom: -20%;
+}
+
+.bottom-image, .bottom-text {
+  width: 50%;
+  display: inline-block;
+}
+
+.bottom-image {
+  margin: auto;
+  text-align: center;
+}
+
+.bottom-text {
+  width: 40%;
+}
+
+.btn-bottom {
+  text-align: left !important;
+}
+
+.stamp {
+  bottom: -80%;
+  right: 8%;
 }

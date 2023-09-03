@@ -20,8 +20,8 @@ const Navbar = () => {
           <img src={logo} alt="VisaBud logo" srcSet="" />
         </div>
         <div className="features col">
-          <button type="button" class="btn col req-btn">Travel Requirements</button>
-          <button type="button" class="btn col chat-btn">Start Chatting</button>
+          <button type="button" className="btn col req-btn">Travel Requirements</button>
+          <button type="button" className="btn col chat-btn">Start Chatting</button>
         </div>
       </div>
      
