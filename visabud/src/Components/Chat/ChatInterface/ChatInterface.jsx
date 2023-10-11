@@ -51,7 +51,7 @@ export default function ChatInterface(props) {
 
 
     async function genQuestions(context) {
-        setTyping(true)
+        //setTyping(true)
         await axios.post(url + "/questions", {"context": context})
         .then((response) => {
             setQuestions(response.data.answer)

@@ -4,6 +4,8 @@ import { Routes, Route } from 'react-router-dom';
 import LandingPage from "./Pages/LandingPage/LandingPage";
 import ChatPage from "./Pages/ChatPage/ChatPage"
 import ContextFormPage from "./Pages/Context/ContextFormPage";
+import Signup from "./Pages/Sign up/Signup";
+import Login from "./Pages/Login/Login";
 
 
 function App() {
@@ -13,6 +15,8 @@ function App() {
           <Route path="/" element={<LandingPage />} />
           <Route path="/chat" element={<ChatPage />} />
           <Route path="/start" element={<ContextFormPage />} />
+          <Route path="/signup" element={<Signup />} />
+          <Route path="/login" element={<Login />} />
        </Routes>
     </div>
   );

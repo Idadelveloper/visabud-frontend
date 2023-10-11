@@ -5,11 +5,7 @@ import logo from '../../assets/VisaBud.png';
 import "./Navbar.css"
 
 import {
-  BrowserRouter,
   Link,
-  Routes,
-  Navigate,
-  Router,
 } from "react-router-dom";
 
 const Navbar = () => {
@@ -21,9 +17,16 @@ const Navbar = () => {
             <img src={logo} alt="VisaBud logo" srcSet="" />
           </div>
         </Link>
+
+        <div>
+          <button type="button" className="btn req-btn">Home</button>
+          <button type="button" className="btn req-btn">Travel Requirements</button>
+          <button type="button" className="btn req-btn">Visa guidance</button>
+        </div>
+
         <div className="features">
-          <button type="button" className="btn req-btn">About Us</button>
-          <Link to="/start"><button type="button" className="btn chat-btn">Start Chatting</button></Link>
+          <Link to="/login"><button type="button" className="btn login-btn">Login</button></Link>
+          <Link to="/signup"><button type="button" className="btn signup-btn">Sign up</button></Link>
         </div>
       </div>
 

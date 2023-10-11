@@ -1,8 +1,11 @@
 .footer {
-    height: 150px;
-    background-color: #E39FF6;
+    height: 355px;
+    background-color: #EDE6F3;
     width: 100%;
     margin-top: auto;
+    margin: auto;
+    padding: 30px;
+   
 }
 
 .footer-info {
@@ -11,6 +14,15 @@
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.footer-logo{
+    text-align: left;
+    
+}
+
+.footer-logo>p{
+    margin-top: 1rem;
 }
 
 .copyright {
@@ -25,6 +37,7 @@
     width: 50%;
     display: inline;
     margin-left: 5%;
+    text-align: left;
 }
 
 .socials{
@@ -42,7 +55,8 @@
 
 .footer-btns > button {
     display: block;
-    text-align: right;
+    text-align: left;
+   
 }
 
 .req-btn {
@@ -50,9 +64,17 @@
     border-radius: 1rem;
 }
 
+.socials{
+    display: flex;
+    justify-content: space-between;
+   
+    width: 100%;
+}
+
 .socials > a {
     color: var(--primary-color);
     font-size: 20px;
+
 }
 
 .footer-btns > .req-btn {

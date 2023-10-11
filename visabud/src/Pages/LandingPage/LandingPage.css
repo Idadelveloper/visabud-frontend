@@ -1,11 +1,18 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato&display=swap');
+
 .heading {
   font-family: "Zilla Slab", serif;
-  font-size: 70px;
+  font-size: 65px;
 }
 html, body {
   width: 100%;
   margin: 0;
-  padding: 0;
+  padding: 0; 
+  
+}
+
+.w-100{
+  font-family: "Lato", sans-serif;
 }
 
 .top-pg {
@@ -37,15 +44,20 @@ html, body {
 
 }
 
-.home-btn-chat {
+.home-btn-visa {
   background-color: var(--primary-color) !important;
   color: white !important;
+}
+
+.home-btn-travel {
+  border:2px solid var(--primary-color) !important;
+
 }
 
 .stats {
   width: 85%;
   padding: 20px;
-  background-color: #e8adf8;
+  background-color: #EDE6F3;
   border-radius: 5px;
   text-align: center;
   margin: 2rem auto;
@@ -78,22 +90,40 @@ h2 {
 .mid-sec {
   margin-top: 4rem;
   margin-bottom: 2rem;
+    margin-top: 10%;
 }
 
 
 .mid-sec>p, .mid-sec>h2 {
-  width: 40%;
+  width: 55%;
   text-align: center;
   margin: auto;
+
 }
 
 .home-form {
-  margin: auto 10rem !important;
+  margin: auto !important;
+  align-content: center;
+}
+
+.form-border{
+  width: 85%;
+    padding: 20px;
+    border: 2px solid var(--primary-color);
+    border-radius: 5px;
+    text-align: center;
+    margin: 2rem auto;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
 }
 
 .btn-home {
+  background-color: var(--primary-color) !important;
   color: white !important;
   width: 10rem;
+  
 }
 
 .home-icon {
@@ -110,13 +140,44 @@ h2 {
   bottom: -20%;
 }
 
-.bottom-image, .bottom-text {
-  width: 50%;
-  display: inline-block;
+.below-mid-sec {
+  margin-top: 4rem;
+  margin-bottom: 2rem;
+  margin-top: 10%;
+  background-color: #E1E1E1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
 }
 
-.bottom-image {
+.below-mid-sec>p,.below-mid-sec>h2 {
+  width: 55%;
+  text-align: center;
   margin: auto;
+
+}
+
+.below-mid-sec>p{
+  margin: 1rem;
+}
+
+.btn-signup{
+  background-color: var(--primary-color) !important;
+  color: white !important;
+    
+}
+
+.bottom-section{
+  margin-top: 5rem;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+
+.bottom-image {
   text-align: center;
 }
 
