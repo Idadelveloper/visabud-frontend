@@ -27,7 +27,7 @@ export default function ChatInterface(props) {
     const [answers, setAnswers] = useState([])
 
     const [idx, setIdx] = useState(0)
-    const url = process.env.REACT_APP_BASE_URL
+    const url = "http://127.0.0.1:5000"
 
 
 
