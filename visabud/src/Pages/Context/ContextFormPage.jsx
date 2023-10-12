@@ -4,6 +4,7 @@ import Navbar from '../../Components/Navbar/Navbar';
 import Footer from '../../Components/Footer/Footer';
 import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 export default function ContextFormPage() {
   const [reason, setReason] = useState({})
@@ -25,15 +26,26 @@ export default function ContextFormPage() {
     console.log(reason)
   };
 
-//   async function genContext(context_info) {
-//     await axios.post("http://127.0.0.1:5000/init", context_info)
-//     .then((response) => {
-//         res = response.data
-//     })
-//     .catch(error => {
-//         console.log(error)
-//     });
-// }
+  async function suggestVisa(context_info) {
+    console.log(context_info)
+    await axios.post("http://127.0.0.1:5000/init", {'info': context_info})
+    .then((response) => {
+        console.log(response.data)
+        const data = response.data
+        const need_visa = data['need_visa']
+        const explain = data['explain']
+        console.log(need_visa, explain)
+        if (!need_visa) {
+          navigate("/visa-not-required", {state: {'explain': explain}, replace: true})
+        } else {
+          const extraContext = context_info + " Visa I want to apply for: " + explain; 
+          navigate("/chat", {state: {"context": extraContext}, replace: true})
+        }
+    })
+    .catch(error => {
+        console.log(error)
+    });
+}
 
 const handleSubmit = (event) => {
   event.preventDefault(); 
@@ -44,21 +56,18 @@ const handleSubmit = (event) => {
     const curCountry = curCountryRef.current.value;
     const destCountry = destCountryRef.current.value;
     const visaType = visaTypeRef.current.value
-    // const suggest = visaTypeRef.current.value == "suggest" ? true : false
-    const extraContext = "My country of origin is " + curCountryRef.current.value + " and I am currently residing in " + curCountryRef.current.value + " and I want to travel to " + destCountryRef.current.value + " . I want to apply for a " + visaTypeRef.current.value + " visa. " + data; 
-    console.log(extraContext)
-    navigate("/chat", {state: {"context": extraContext}, replace: true})
-}
+    const suggest = visaTypeRef.current.value == "suggest" ? true : false
 
-  // const handleSubmit = (event) => {
-  //   const originCountry = curCountryRef.current.value;
-  //   const curCountry = curCountryRef.current.value;
-  //   const destCountry = destCountryRef.current.value;
-  //   const visaType = visaTypeRef.current.value
-  //   // const suggest = visaTypeRef.current.value == "suggest" ? true : false
-  //   const extraContext = "My country of origin is" + curCountryRef.current.value + "and I am currently residing in" + curCountryRef.current.value + "and I want to travel to" + destCountryRef.current.value + ". I want to apply for a " + visaTypeRef.current.value + " visa."
-  //   console.log(extraContext)
-  // }
+    const prompt = "My country of origin is " + curCountryRef.current.value + " and I am currently residing in " + curCountryRef.current.value + " and I want to travel to " + destCountryRef.current.value + ". My reason for travel is: " + purposeRef.current.value + ". "
+
+    if (suggest) {
+      suggestVisa(prompt)
+    }
+    else {
+      const extraContext = "My country of origin is " + curCountryRef.current.value + " and I am currently residing in " + curCountryRef.current.value + " and I want to travel to " + destCountryRef.current.value + " . I want to apply for a " + visaTypeRef.current.value + " visa. " + data; 
+      navigate("/chat", {state: {"context": extraContext}, replace: true})
+    }
+}
 
   
   return (
@@ -70,6 +79,7 @@ const handleSubmit = (event) => {
               <label htmlFor="" className='form-label'>What country are you travelling from?</label>
               <select name="origin" ref={curCountryRef} className="form-select" onChange={handleInputChange}>
                 <option selected>Select...</option>
+                <option value="USA">USA</option>
                 <option value="Cameroon">Cameroon</option>
                 <option value="Ethiopia">Ethiopia</option>
                 <option value="Nigeria">Nigeria</option>
@@ -82,6 +92,7 @@ const handleSubmit = (event) => {
                 <option value="Canada">Canada</option>
                 <option value="Ethiopia">Ethiopia</option>
                 <option value="UK">United Kingdom</option>
+                <option value="USA">USA</option>
               </select>
             </div>
             <div className='col-md-6'>
@@ -96,15 +107,8 @@ const handleSubmit = (event) => {
             </div>
             <div className='col-md-6'>
               <label htmlFor="" className='form-label'>What is your purpose of travelling?</label>
-              <select name="purpose" ref={purposeRef} className="form-select" onChange={handleInputChange}>
-                <option selected>Select...</option>
-                <option value="school">School</option>
-                <option value="work">Work</option>
-                <option value="conference">Conference</option>
-                <option value="tourism">Tourism</option>
-                <option value="business">Business</option>
-                <option value="visit">Visit</option>
-              </select>
+              <div><input type="text" name="purpose" className="form-input" ref={purposeRef}/>
+              </div>
             </div>
             {/* <div className='col-12'>
               <label htmlFor="reason" className='form-label'>What is your reason for travelling? (not more than 300 words)</label>
