@@ -10,6 +10,8 @@
     width: 85%;
     justify-content: space-between;
     padding: 20px;
+    align-items: center;
+    
 }
 
 .req-btn {
@@ -18,17 +20,19 @@
 }
 
 .req-btn:hover {
-    background-color: #E39FF6;
+    background-color: #EDE6F3;
 }
 
-.chat-btn {
-    background-color: var(--primary-color);
-    color: white;
+.login-btn {
+    background-color: var(--primary-color) !important;
+    color: white !important;
 }
 
-.chat-btn.req-btn:hover {
-    background-color: palevioletred
+.signup-btn {
+    border: 2px solid var(--primary-color) !important;
+    color: black !important;
 }
+
 
 .navbar {
     padding: 20px;
