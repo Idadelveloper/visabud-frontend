@@ -24,23 +24,15 @@
 }
 
 .login-btn {
-    background-color: var(--primary-color);
-    color: white;
+    background-color: var(--primary-color) !important;
+    color: white !important;
 }
 
 .signup-btn {
-    border: 2px solid var(--primary-color);
+    border: 2px solid var(--primary-color) !important;
+    color: black !important;
 }
 
-.signup-btn:hover{
-    background-color: var(--primary-color);
-    color: white;
-}
-
-.login-btn:hover {
-    border: 2px solid var(--primary-color);
-    color: black;
-}
 
 .navbar {
     padding: 20px;
