@@ -10,23 +10,23 @@ import {
 
 const Navbar = () => {
   return (
-    <div className="navbar row">
+    <div className="navbar">
       <div className="nav-content">
-        <Link to="/">
-          <div className="logo col">
+        <Link to="/" className="logo-link">
+          <div className="logo">
             <img src={logo} alt="VisaBud logo" srcSet="" />
           </div>
         </Link>
 
-        <div>
+        {/* <div>
           <button type="button" className="btn req-btn">Home</button>
           <button type="button" className="btn req-btn">Travel Requirements</button>
           <button type="button" className="btn req-btn">Visa guidance</button>
-        </div>
+        </div> */}
 
         <div className="features">
-          <Link to="/login"><button type="button" className="btn login-btn">Login</button></Link>
-          <Link to="/signup"><button type="button" className="btn signup-btn">Sign up</button></Link>
+        <Link to="/how-it-works" className="link">How it works</Link>
+          <Link to="/start" className="chat-btn">Start Chatting</Link>
         </div>
       </div>
 
