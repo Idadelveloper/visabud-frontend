@@ -18,11 +18,11 @@ const Navbar = () => {
           </div>
         </Link>
 
-        <div>
+        {/* <div>
           <button type="button" className="btn req-btn">Home</button>
           <button type="button" className="btn req-btn">Travel Requirements</button>
           <button type="button" className="btn req-btn">Visa guidance</button>
-        </div>
+        </div> */}
 
         <div className="features">
         <Link to="/how-it-works" className="link">How it works</Link>
