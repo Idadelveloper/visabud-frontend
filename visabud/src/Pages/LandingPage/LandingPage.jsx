@@ -1,4 +1,4 @@
-import React, {useRef} from "react";
+import React, { useRef, useEffect, useState } from "react";
 import { Link, useNavigate } from 'react-router-dom';
 import "./LandingPage.css";
 // import { Container, Row, Col } from "react-bootstrap";
@@ -11,12 +11,28 @@ import travel from '../../assets/images/png/travel.png';
 import airplane from '../../assets/images/png/airplane.png';
 import stamp from '../../assets/images/png/stamp.png';
 import airportLady from '../../assets/images/png/airportLady.png';
+import Select from "react-select";
 
 
 const LandingPage = () => {
   const infoTypeRef = useRef(null);
   const resCountryRef = useRef(null);
   const destCountryRef = useRef(null);
+
+  const [countries, setCountries] = useState([]);
+  const [selectedCountry, setSelectedCountry] = useState({});
+  const [selectedDestCountry, setSelectedDestCountry] = useState({});
+
+  useEffect(() => {
+    fetch(
+      "https://valid.layercode.workers.dev/list/countries?format=select&flags=true&value=code"
+    )
+      .then((response) => response.json())
+      .then((data) => {
+        setCountries(data.countries);
+        setSelectedCountry(data.userSelectValue);
+      });
+  }, []);
 
   const navigate = useNavigate();
 
@@ -28,7 +44,7 @@ const LandingPage = () => {
 
     const extraContext = "I am currently residing in " + residenceCountry + " and I want to travel to " + destinationCountry + ". What are the " + infoType + " for my trip?"
     console.log(extraContext)
-    navigate("/chat", {state: {"context": extraContext}, replace: true})
+    navigate("/chat", { state: { "context": extraContext }, replace: true })
   }
   return (
     <div className="w-100">
@@ -36,16 +52,16 @@ const LandingPage = () => {
       <div className="top-pg">
         <div className="home-text">
           <div className="heading">
-            Let us take you from <br /> Here to the There.
+            Let's get you from <p className="heading_txt">here</p> to the <p className="heading_txt">there</p>.
           </div>
-          <div className="secondary-text">
-            Getting a visa for some countries is hard. What are the visa requirements? What documents do you submit? How does one avoid visa rejections? We're here to help! 
-          </div>
+          <p className="secondary-text">
+            Applying for a visa is stressful. What are the visa requirements? What documents do you submit? How do you avoid visa rejections? We're here to help!
+          </p>
           <div className="home-btns">
             {/* <Link to="/start" className="btn home-btn-req">Get Visa Info</Link> */}
-            <Link to="/start" className="btn home-btn-chat">Get Started</Link>
+            <Link to="/start" className="button home-btn-chat">Get Started</Link>
           </div>
-          
+
         </div>
         <div className="globe">
           <img src={hero} alt="VisaBud logo" srcSet="" />
@@ -76,57 +92,55 @@ const LandingPage = () => {
         <img src={airplane} alt="Airplane Icon" srcSet="" className="home-icon airplane" />
 
         <form action="" className="row home-form" onSubmit={handleSubmit}>
-            <div className='col-md-4'>
-                <label htmlFor="" className='form-label'>Information Type</label>
-                <select ref={infoTypeRef} className="form-select">
-                  <option selected>Select...</option>
-                  <option value="visa requirements">Visa Requirements</option>
-                  <option value="Travel Requirements">Travel Requirements </option>
-                  <option value="visa suggestions or recommendations">Visa Type Suggestions</option>
-                </select>
-              </div>
-              <div className='col-md-4'>
-                <label htmlFor="" className='form-label'>Country of Residence</label>
-                <select ref={resCountryRef} className="form-select">
-                  <option selected>Select...</option>
-                  <option value="Cameroon">Cameroon</option>
-                  <option value="Ethiopia">Ethiopia</option>
-                  <option value="UK">United Kingdom</option>
-                </select>
-              </div>
-              <div className='col-md-4'>
-                <label htmlFor="" className='form-label'>Country of Destination</label>
-                <select ref={destCountryRef} className="form-select">
-                  <option selected>Select...</option>
-                  <option value="United States">United States</option>
-                  <option value="United Kingdom">United Kingdom</option>
-                  <option value="Canada">Canada</option>
-                  <option value="Ethiopia">Ethiopia</option>
-                </select>
-              </div>
-              <div className="col-12 form-button my-2">
-                <button type="submit" className="btn btn-home">Search</button>
-              </div>
+          <div className='col-md-4 form-group'>
+            <label htmlFor="" className='form-label'>Information Type</label>
+            <select ref={infoTypeRef} className="form-select">
+              <option selected>Select...</option>
+              <option value="visa requirements">Visa Requirements</option>
+              <option value="Travel Requirements">Travel Requirements </option>
+              <option value="visa suggestions or recommendations">Visa Type Suggestions</option>
+            </select>
+          </div>
+          <div className='col-md-4 form-group'>
+            <label htmlFor="" className='form-label'>Country of Residence</label>
+            <Select
+              options={countries}
+              value={selectedCountry}
+              onChange={(selectedOption) => setSelectedCountry(selectedOption)}
+            />
+          </div>
+          <div className="col-md-4 form-group">
+            <label htmlFor="" className='form-label'>Country of Destination</label>
+            <Select
+              options={countries}
+              value={selectedDestCountry}
+              onChange={(selectedOption) => setSelectedDestCountry(selectedOption)}
+            />
+          </div>
+          <div className="col-12 form-button my-2">
+            <button type="submit" className="button">Search</button>
+          </div>
         </form>
       </div>
       <div className="bottom-section">
-        <div className="bottom-image">
-          <img src={airportLady} alt="Airport Lady" srcSet="" className="airport-lady" />
-        </div>
-        <div className="bottom-text">
-          <h2>No more visa rejections</h2>
-          <p>Receive detailed guidance and travel tips using our chatbot.</p>
-          
-          <Link to="/start">
-          <div className="col-12 form-button my-2 btn-bottom">
-          <button className="btn btn-home">Start Chatting</button>
+        <div className="bottom-content">
+          <div className="bottom-image">
+            <img src={airportLady} alt="Airport Lady" srcSet="" className="airport-lady" />
           </div>
-          </Link>
+          <div className="bottom-text">
+            <h2>Prepare your visa application with AI assistance</h2>
+            <p>Receive detailed guidance and travel tips using our chatbot.</p>
+
+            <Link to="/start">
+              <div className="col-12 form-button my-2 btn-bottom">
+                <button className="button ">Start Chatting</button>
+              </div>
+            </Link>
+          </div>
         </div>
         <img src={stamp} alt="Stamp Icon" srcSet="" className="home-icon stamp" />
       </div>
-      
-      
+
       {/* <Footer/> */}
     </div>
   );

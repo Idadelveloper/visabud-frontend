@@ -14,16 +14,16 @@ import {
 
 const Navbar = () => {
   return (
-    <div className="navbar row">
+    <div className="navbar">
       <div className="nav-content">
-        <Link to="/">
-          <div className="logo col">
+        <Link to="/" className="logo-link">
+          <div className="logo">
             <img src={logo} alt="VisaBud logo" srcSet="" />
           </div>
         </Link>
         <div className="features">
-          <button type="button" className="btn req-btn">About Us</button>
-          <Link to="/start"><button type="button" className="btn chat-btn">Start Chatting</button></Link>
+        <Link to="/how-it-works" className="link">How it works</Link>
+          <Link to="/start" className="chat-btn">Start Chatting</Link>
         </div>
       </div>
 
