@@ -60,6 +60,11 @@ html, body {
     transition: background-color 0.35s ease-in-out, border-color 0.15s ease-in-out;
 }
 
+.home-btn-travel {
+  border:2px solid var(--primary-color) !important;
+
+}
+
 .stats {
   width: 95%;
   padding: 20px;
@@ -108,17 +113,21 @@ h2 {
 .mid-sec {
   margin-top: 4rem;
   margin-bottom: 2rem;
+    margin-top: 10%;
 }
 
 .mid-sec>p, .mid-sec>h2 {
   max-width: 300px;
   text-align: center;
   margin: auto;
+
 }
 
 .btn-home {
+  background-color: var(--primary-color) !important;
   color: white !important;
   width: 10rem;
+  
 }
 
 .home-icon {

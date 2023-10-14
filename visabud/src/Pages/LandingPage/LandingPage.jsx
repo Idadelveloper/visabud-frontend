@@ -84,8 +84,8 @@ const LandingPage = () => {
 
       <div className="relative">
         <div className="mid-sec">
-          <h2>We are here to help</h2>
-          <p>Get visa and immigration information</p>
+          <h2>Discover Essential Travel Requirements: Let Us Help You Prepare</h2>
+          <p>Get access to the travel requirement of all the countries you dream of traveling to</p>
         </div>
 
         <img src={travel} alt="Car Icon" srcSet="" className="home-icon car" />
@@ -122,6 +122,13 @@ const LandingPage = () => {
           </div>
         </form>
       </div>
+
+      <div className="below-mid-sec">
+          <h2>Get personalized help and ace those visa applications!</h2>
+          <p>With our chat feature, you will receive detailed guidance and travel tips, ensuring that you your visa application is as smooth and effortless and possible</p>
+           <Link to="/signup" className="btn btn-signup">Sign up</Link>
+      </div>
+
       <div className="bottom-section">
         <div className="bottom-content">
           <div className="bottom-image">
