@@ -47,6 +47,10 @@ export default function ChatInterface(props) {
         if (idx <= questions.length) {
             setAnswers([...answers, message])
         }
+
+        // Scroll to the bottom of the chat box
+        const chatInterface = document.querySelector('.cs-message-list')
+        chatInterface.scrollTop = chatInterface.scrollHeight
     }
 
 
@@ -167,7 +171,7 @@ export default function ChatInterface(props) {
                             return <Message key={i} model={message} className={message.sender} />
                         })}
                     </MessageList>
-                    <MessageInput className='message-input' placeholder="Make your visa inquiries here" onSend={handleSend}/>
+                    <MessageInput placeholder="Make your visa inquiries here" onSend={handleSend}/>
                 </ChatContainer>
             </MainContainer>
         </div>

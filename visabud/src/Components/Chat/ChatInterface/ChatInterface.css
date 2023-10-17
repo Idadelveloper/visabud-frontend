@@ -8,10 +8,9 @@
 .chat-interface {
     position: relative;
     width: 85%;
-    height: 800px;
-    border-radius: 1rem;
     display: inline;
-    
+    height: 500px;
+    overflow: hidden;
 
 }
 
@@ -54,14 +53,38 @@
     text-align: center;
 }
 
+
 div > .cs-message__content-wrapper > .cs-message--outgoing .cs-message__content {
     background-color: #E39FF6 !important;
+}
+
+div > .cs-message-list{
+    overflow-y: scroll;
+    overflow: hidden;
 }
 
 div > .cs-message__content-wrapper > .cs-message__content-wrapper {
     background-color: #FAE6FA !important;
 }
 
-.message-input {
-    border: 2px solid red;
+div > .cs-typing-indicator > .cs-typing-indicator__text{
+    position: absolute;
+    bottom: 50px;
+    background-color: white;
+    width: 100%;
+    left: 20px;
+}
+
+div>.cs-typing-indicator>.cs-typing-indicator__indicator {
+    position: absolute;
+    bottom: 50px;
+    background-color: white;
+    width: 100%;
+    height: 60%;
+}
+
+div > .cs-chat-container > .cs-message-input{
+    position: absolute;
+    bottom: 0px;
+    width: 100%;
 }
