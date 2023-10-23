@@ -48,9 +48,6 @@ export default function ChatInterface(props) {
             setAnswers([...answers, message])
         }
 
-        // Scroll to the bottom of the chat box
-        const chatInterface = document.querySelector('.chat-interface')
-        chatInterface.scrollTop = chatInterface.scrollHeight
     }
 
 
@@ -141,6 +138,13 @@ export default function ChatInterface(props) {
         const newFinalMessages = [...messages, newMessage, newResponseMessage]
         setMessages(newFinalMessages)
     }
+
+    
+    useEffect(() => {
+        // Scroll to the bottom of the chat section whenever a new message is added
+        const chatInterface = document.querySelector('.chat-interface')
+        chatInterface.scrollTop = chatInterface.scrollHeight
+    }, [messages])
 
     
   return (
