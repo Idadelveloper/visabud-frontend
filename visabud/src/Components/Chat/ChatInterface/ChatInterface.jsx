@@ -49,7 +49,7 @@ export default function ChatInterface(props) {
         }
 
         // Scroll to the bottom of the chat box
-        const chatInterface = document.querySelector('.cs-message-list')
+        const chatInterface = document.querySelector('.chat-interface')
         chatInterface.scrollTop = chatInterface.scrollHeight
     }
 
