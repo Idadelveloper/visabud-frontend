@@ -47,6 +47,7 @@ export default function ChatInterface(props) {
         if (idx <= questions.length) {
             setAnswers([...answers, message])
         }
+
     }
 
 
@@ -139,6 +140,13 @@ export default function ChatInterface(props) {
     }
 
     
+    useEffect(() => {
+        // Scroll to the bottom of the chat section whenever a new message is added
+        const chatInterface = document.querySelector('.chat-interface')
+        chatInterface.scrollTop = chatInterface.scrollHeight
+    }, [messages])
+
+    
   return (
     <div className='chat'>
         {/* <div className='side-menu'>
@@ -167,7 +175,7 @@ export default function ChatInterface(props) {
                             return <Message key={i} model={message} className={message.sender} />
                         })}
                     </MessageList>
-                    <MessageInput className='message-input' placeholder="Make your visa inquiries here" onSend={handleSend}/>
+                    <MessageInput placeholder="Make your visa inquiries here" onSend={handleSend}/>
                 </ChatContainer>
             </MainContainer>
         </div>

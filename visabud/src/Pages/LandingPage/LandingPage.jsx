@@ -4,8 +4,6 @@ import "./LandingPage.css";
 // import { Container, Row, Col } from "react-bootstrap";
 import 'bootstrap/dist/css/bootstrap.css';
 import Navbar from "../../Components/Navbar/Navbar";
-import ContextFormPage from "../Context/ContextFormPage";
-import Footer from "../../Components/Footer/Footer";
 import hero from '../../assets/images/png/hero.png';
 import travel from '../../assets/images/png/travel.png';
 import airplane from '../../assets/images/png/airplane.png';
