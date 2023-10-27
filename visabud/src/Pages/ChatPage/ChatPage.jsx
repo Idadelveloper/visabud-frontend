@@ -6,7 +6,7 @@ export default function ChatPage(props) {
   return (
     <div>
         <Navbar />
-        <ChatInterface context={props.context} />
+        <ChatInterface context={props.context} debug={props.debug} />
     </div>
   )
 }
