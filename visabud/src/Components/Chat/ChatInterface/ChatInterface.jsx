@@ -27,7 +27,7 @@ export default function ChatInterface(props) {
     const [answers, setAnswers] = useState([])
 
     const [idx, setIdx] = useState(0)
-    const url = "http://127.0.0.1:5000"
+    const url = process.env.REACT_APP_SERVER_URL
 
 
 
@@ -73,7 +73,7 @@ export default function ChatInterface(props) {
 
     async function genCoverLetter(msg1, msg2) {
         setTyping(true)
-        await axios.post("http://127.0.0.1:5000/cover", {"questions": questions, "answers": answers.slice(1)})
+        await axios.post(url + "/cover", {"questions": questions, "answers": answers.slice(1)})
         .then((response) => {
             const cover = response.data.answer
             const newResponseMessage = {

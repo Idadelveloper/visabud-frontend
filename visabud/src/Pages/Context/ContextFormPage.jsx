@@ -17,6 +17,7 @@ export default function ContextFormPage() {
   const accomodationRef = useRef(null);
   const financeRef = useRef(null);
   const history = useNavigate();
+  const url = process.env.REACT_APP_SERVER_URL
 
   const navigate = useNavigate();
 
@@ -28,7 +29,7 @@ export default function ContextFormPage() {
 
   async function suggestVisa(context_info) {
     console.log(context_info)
-    await axios.post("http://127.0.0.1:5000/init", {'info': context_info})
+    await axios.post(url + "/init", {'info': context_info})
     .then((response) => {
         console.log(response.data)
         const data = response.data
