@@ -10,6 +10,11 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSignIn, faRefresh } from '@fortawesome/free-solid-svg-icons';
 
 
+export const visaBudApi = axios.create({
+    baseURL: process.env.REACT_APP_SERVER_URL,
+  });
+
+
 export default function ChatInterface(props) {
     const [typing, setTyping] = useState(false)
     const [messages, setMessages] = useState([
@@ -28,6 +33,7 @@ export default function ChatInterface(props) {
 
     const [idx, setIdx] = useState(0)
     const url = process.env.REACT_APP_SERVER_URL
+    axios.defaults.baseURL = process.env.REACT_APP_SERVER_URL
 
 
 
@@ -52,8 +58,9 @@ export default function ChatInterface(props) {
 
 
     async function genQuestions(context) {
+        
         //setTyping(true)
-        await axios.post(url + "/questions", {"context": context})
+        await visaBudApi.post("/questions", {"context": context})
         .then((response) => {
             setQuestions(response.data.answer)
             if (questions) {
